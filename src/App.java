@@ -1,21 +1,25 @@
 package src;
 import src.Controllers.*;
-
+import src.Models.*;
 public class App {
     public static void main(String[] args) {
-        Stack stack = new Stack();
-        stack.push(10);
-        stack.push(-1);
-        stack.push(5);
-        stack.push(8);
- 
+        Persona p1 = new Persona("Juan");
+        Persona p2 = new Persona("Maria");
+        Persona p3 = new Persona("Pedro");
+        Persona p4 = new Persona("David");
+        GenericQueue<Persona> colaPersona = new GenericQueue<Persona>();
+        colaPersona.QueueAdd(p1);
+        colaPersona.QueueAdd(p2);
+        colaPersona.QueueAdd(p3);
+        colaPersona.QueueAdd(p4);
+        System.out.println("Perosna Atendida -> " + colaPersona.remove());
+        colaPersona.printCola();
 
-        System.out.println("Tam " + stack.size());
-        stack.printStack();
-        stack.pop();
-        stack.printStack();
-        System.out.println("Tam " + stack.size());
+        Persona pb = colaPersona.findByName("Juan");
+        System.out.println("Persona Ecnontrada -> " + pb != null);
+        Persona pE = colaPersona.deletebyname("Pedro");
+        System.out.println("Persona eliminada -> " pE != null);
     }
-
+    
 
 }
