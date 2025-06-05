@@ -15,10 +15,12 @@ public class App {
         System.out.println("Perosna Atendida -> " + colaPersona.remove());
         colaPersona.printCola();
 
-        Persona pb = colaPersona.findByName("Juan");
-        System.out.println("Persona Ecnontrada -> " + pb != null);
-        Persona pE = colaPersona.deletebyname("Pedro");
-        System.out.println("Persona eliminada -> " pE != null);
+        String nombreEncontrado = colaPersona.findByName("Juan");
+        System.out.println("Persona Encontrada -> " + (nombreEncontrado != null ? nombreEncontrado : "No encontrada"));
+
+        String nombreEliminado = colaPersona.deletePersonByName("Pedro");
+        System.out.println("Persona eliminada -> " + (nombreEliminado != null ? nombreEliminado : "No encontrada"));
+
     }
     
 

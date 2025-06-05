@@ -55,24 +55,65 @@ public class GenericQueue<T> {
     }  
 
     public void printCola() {
-    NodeGeneric<T> actual = primero;
-    System.out.println("Cola:");
-    while (actual != null) {
-        System.out.println(actual.getValue());
-        actual = actual.getNext();
-    }
-}
-
-    public T findByName(String name) {
         NodeGeneric<T> actual = primero;
+        System.out.println("Cola:");
+            while (actual != null) {
+            System.out.println(actual.getValue());
+            actual = actual.getNext();
+        }
+    }   
+
+    public String findByName(String name) {
+        NodeGeneric<T> actual = primero;
+        
         while (actual != null) {
-            if (actual.getValue().equalsIgnoreCase(name)) {
-                return actual.getValue();
+            Persona persona = (Persona) actual.getValue(); 
+            if (persona.getNombre().equalsIgnoreCase(name)) {
+                return persona.getNombre(); 
             }
+            actual = actual.getNext();
+        }
+        
+        return null; 
+    }
+
+
+
+    public String deletePersonByName(String name) {
+        if (isEmpty()) {
+            return null;
+        }
+
+        NodeGeneric<T> actual = primero;
+        NodeGeneric<T> anterior = null;
+
+        while (actual != null) {
+            Persona persona = (Persona) actual.getValue();
+            if (persona.getNombre().equalsIgnoreCase(name)) {
+                String nombreEliminado = persona.getNombre(); 
+
+                if (anterior == null) {
+                    primero = primero.getNext();
+                    if (primero == null) {
+                        ultimo = null; 
+                    }
+                } else {
+                    anterior.setNext(actual.getNext());
+                    if (actual == ultimo) {
+                        ultimo = anterior;
+                    }
+                }
+                size--;
+                return nombreEliminado; 
+            }
+            anterior = actual;
             actual = actual.getNext();
         }
         return null;
     }
+
+
+
 
 
 
